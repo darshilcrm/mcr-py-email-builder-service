@@ -12,9 +12,9 @@ class BaseConfigModel(BaseModel):
     )
 
 class Configuration(BaseConfigModel):
-    width: int = None 
+    width: int =  Field(description = "Choose width according to button text content button text must be in oneline") 
     visibility: Optional[Literal["mobile" , "all" ]] = None
-    text_size: int = Field(description="Size of text in pixels", default=16)
+    text_size: int = Field(description="Size of text in pixels", default=16, le=20)
     text_color: str = Field(description="Color of the text in RGB or HEX", default="rgb(0, 0, 0)")   
     button_color : str = Field(description="Color of the button in RGB or HEX")
     bg_color: Optional[str] = Field(description="Background color in RGBA or HEX", default="rgba(0,0,0,0)")

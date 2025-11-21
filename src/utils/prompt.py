@@ -441,6 +441,7 @@ MANDATORY RULES (model must obey)
 21.You must prioritize valid JSON structure over creativity.
 22. Do not use background color in button configuration
 23. You must chose "columnLayoutCategory" from defined LAYOUTS
+24.text_size of any text must be not grater than 20
 Your output MUST be parsed into the DataModel schema.
 DO NOT return plain JSON.
 RETURN ONLY the DataModel structure exactly.

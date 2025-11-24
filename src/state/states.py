@@ -14,7 +14,7 @@ class BaseConfigModel(BaseModel):
 class Configuration(BaseConfigModel):
     width: int =  Field(description = "Choose width according to button text content button text must be in oneline") 
     visibility: Optional[Literal["mobile" , "all" ]] = None
-    text_size: int = Field(description="Size of text in pixels", default=16, le=20)
+    text_size: int = Field(description="Size of text in pixels", default=16)
     text_color: str = Field(description="Color of the text in RGB or HEX", default="rgb(0, 0, 0)")   
     button_color : str = Field(description="Color of the button in RGB or HEX")
     bg_color: Optional[str] = Field(description="Background color in RGBA or HEX", default="rgba(0,0,0,0)")
@@ -22,7 +22,7 @@ class Configuration(BaseConfigModel):
    
 # --- Field Values ---
 class BaseFieldValue(BaseConfigModel):
-    id: str
+    id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
     sub_type: str
     configuration: Configuration = Field(alias='Configuration')
 
@@ -48,7 +48,7 @@ class FieldValueContainer(BaseModel):
 
 
 class FieldArrayEntry(BaseConfigModel):
-    id: str
+    id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
     icon: str
     label: str
     name: str
@@ -60,7 +60,7 @@ class ColConfig(BaseConfigModel):
     max_width: int
 
 class FieldDetail(BaseConfigModel):
-    id: str
+    id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
     col_config: ColConfig
     field_array: List[FieldArrayEntry]
 
@@ -70,7 +70,7 @@ class RowConfig(BaseConfigModel):
     background_color: str = Field(description="Background color in RGBA", default="rgba(0,0,0,0)") 
 
 class Row(BaseConfigModel):
-    id: str
+    id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
     row_config: RowConfig
     field_detail: List[FieldDetail]
 

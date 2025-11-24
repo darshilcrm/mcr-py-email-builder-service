@@ -381,7 +381,6 @@ REQUIRED OUTPUT STRUCTURE (STRICT)
         }}
       ]
     }}
- 
   ]
 }}
 

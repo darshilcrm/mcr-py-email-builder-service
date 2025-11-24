@@ -67,9 +67,6 @@ def clean_model_json(raw_text: str) -> str:
     return cleaned
 
 
-
-
-
 @tool
 def image_search(query :str) -> str:
     """

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI , Body
 from fastapi.middleware.cors import CORSMiddleware
 from src.utils.prompt import *
 from src.llm.llm import llm , agent , llm_structure
@@ -15,26 +15,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def generate_email(data : str):
+def generate_email(data: dict):
+    print(data)
+    
+    # Convert the dictionary to a string for the prompt
+    data_str = json.dumps(data)
+    inputs = {"messages": [{"role": "user", "content":"""Generate a fully dynamic email layout for the following details:""" + data_str}]}
 
-    query = EMAIL_TEMPLATE_PROMPT + data
+    response = agent.invoke(inputs)
 
-    response = llm_structure.invoke(query)
+    json_string = response['structured_response'].model_dump_json(indent=2 , by_alias=True ,exclude_none=True)
+    
 
-    json_string = response.model_dump_json(indent=2 , by_alias=True ,exclude_none=True) 
-
-    cleane_data = json.loads(clean_model_json(json_string))
-
-    final_data = apply_default_config_to_dynamic_email(cleane_data)
-
-    json_string = json.dumps(final_data, indent=2)
+    data = json.loads(json_string)
+    final_data = apply_default_config_to_dynamic_email(data)
 
     return final_data
 
 
-@app.post("/generate-email")
-async def generate(query :str):
+@app.post("/generate")
+async def generate(data: dict = Body(...)):
+    query = {}
+    query['emailType'] = data['emailType'] 
+    query['purpose'] = data['purpose']
+    query['tone'] = data['tone']
+    query['targetAudience'] = data['targetAudience']
+    query['keyPoints'] = data['keyPoints']
+    query['additionalDetails'] = data['additionalDetails']
+    print(query)
 
-    content= generate_email(query)
+    content= generate_email(data)
     return JSONResponse(content=content, status_code=200)
 

@@ -1,6 +1,5 @@
 import json
 from typing import List, Literal, Optional, Any
-from fastapi import background
 from pydantic import BaseModel, Field, ConfigDict, alias_generators
 
 

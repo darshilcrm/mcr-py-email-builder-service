@@ -1,6 +1,6 @@
 import copy
 from src.utils.default_values import *
-from serpapi import GoogleSearch
+from serpapi.google_search import GoogleSearch
 import os
 from langchain.tools import tool
 
@@ -80,8 +80,9 @@ def image_search(query :str) -> str:
     params = {
         # This is the key change for image search
         "engine": "google_images",      
-        
-        "q": query,           # Your secret API key
+        "tbs": "il:cl",
+        "q": query, 
+        "gl" : "in",       
         "api_key": api_key
 
             }

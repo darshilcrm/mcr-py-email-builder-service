@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 from src.utils.prompt import EMAIL_TEMPLATE_PROMPT 
 from src.state.states import DataModel
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 # from langchain.agents import AgentExecutor
 from src.helper.helper_function import image_search
@@ -26,7 +26,7 @@ llm_structure = llm.with_structured_output(DataModel)
 #     response_format=DataModel
 #     )
 
-agent = create_react_agent(model = llm, tools = tools, prompt = EMAIL_TEMPLATE_PROMPT , response_format=DataModel , debug = True)
+agent = create_react_agent(model = llm, tools = tools, prompt = EMAIL_TEMPLATE_PROMPT , response_format=DataModel)
 # agent_executor = AgentExecutor(agent=agent, tools=tools)
 # (1) 2 colomn layout
 # - column/2-50-image-text-button (Means both columns have image, text and button)

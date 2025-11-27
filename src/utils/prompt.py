@@ -443,6 +443,7 @@ MANDATORY RULES (model must obey)
 24.text_size of any text must be not grater than 18
 25. Never do same color of button and button text
 26. If same type of images used then use different query each time in image_search tool
+
 Your output MUST be parsed into the DataModel schema.
 DO NOT return plain JSON.
 RETURN ONLY the DataModel structure exactly.
@@ -471,3 +472,51 @@ END
 # use this url "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" for images
 
 
+HTML_EMAIL_TEMPLATE_PROMPT = """  
+
+Role: Act as an expert Email Marketing Developer and UI Designer.
+
+Objective: Create a comprehensive, responsive HTML email template suitable for a newsletter or product announcement.
+
+Critical Technical Constraints (Must Follow):
+
+Inline CSS Only: All styling must be applied directly to HTML elements using the style="" attribute. Do not use internal <style> blocks in the <head> or external CSS files, as these are often stripped by email clients like Gmail and Outlook.
+Table-Based Layout: Use nested HTML <table> elements for the structural layout to ensure maximum compatibility with legacy clients (like Outlook on Windows).
+Accessibility: Add role="presentation" to all layout tables to ensure screen readers treat them as layout, not data.
+Responsiveness: * The container should have a maximum width of 600px.
+
+On screens smaller than 600px, the content should resize to 100% width.
+
+No JavaScript: Do not use any <script> tags.
+
+Design Structure:
+There is no design structure you can use which you want  but it must be creative and beautiful
+
+Output:
+Provide the complete, raw HTML code in a single code block.
+
+INSTRUCTION
+
+1. Return ONLY Full HTML code. No explanation, no markdown, no commentary.
+2. Use image_search tool to get image URLS according to email context.
+3. use background color or background image where you want to use
+4. You may use gradient color where you want to use
+5. Output must be very beautiful and professional
+6. Use real emojis instead of escaped Unicode sequences.
+7. Add id in every element
+
+
+
+"""
+
+
+# === USER PROMPT ===
+# Now generate an email for the following user brief (replace placeholders with actual copy and links, but still keep placeholders in curly braces so they can be programmatically replaced later):
+
+# Email Type: "Welcome Email"
+# Purpose: "Welcome new subscribers to our platform and offer a discount"
+# Tone: "Professional"
+# Target Audience: "New subscribers"
+# Key Points: ["Welcome message", "Discount code: WELCOME20", "How to redeem"]
+# Primary CTA text: "Claim Discount"
+# Primary CTA URL: "{{cta_url}}"

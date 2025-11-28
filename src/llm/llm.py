@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 # from src.utils.prompt import EMAIL_TEMPLATE_PROMPT , HTML_EMAIL_TEMPLATE_PROMPT
 from src.utils.prompt import PromptList
-from src.state.states import DataModel
+from src.state.output_states import DataModel
 from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 # from langchain.agents import AgentExecutor

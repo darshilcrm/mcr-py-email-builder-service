@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcr_py_email_builder_service"
+version = "0.1.0"
+description = "Email Builder Service"
+requires-python = ">=3.10"
+dependencies = [
+    "mcr-py-common @ git+ssh://git@github.com/trenchaant/mcr-py-common.git@1.0.69",
+    "pydantic",
+    "langchain",
+    "langchain-google-genai",
+    "fastapi",
+    "uvicorn"
+]

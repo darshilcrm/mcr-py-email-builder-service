@@ -77,13 +77,12 @@ class DefaultValues:
         "marginRight": 0,
         "objectFit": "cover",
         "dividerType": "solid",
-        "dividerColor": "black",
         "showFieldLabelSettingIconId": None,
         "showFieldLabel": False,
         "showAdditionalFields": False,
         "fieldTextAlignment": "row",
         "imageBackground": "rgba(0,0,0,0)",
-        "borderColor": "rgba(0,0,0,0)",
+
     }
 
     DEFAULT_TEXT_CONFIG = {

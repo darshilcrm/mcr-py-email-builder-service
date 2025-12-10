@@ -23,6 +23,8 @@ class Configuration(BaseConfigModel):
     border_color: str = Field(description="Border color in RGBA or HEX", default="rgba(0,0,0,0)")
     border_width: int = Field(description="Border width in pixels", default=0)
     font_weight: int = Field(description="Font weight in pixels", default=400)
+    divider_color: str = Field(description="Divider color in RGBA or HEX", default="rgba(0,0,0,0)")
+    align: str = Field(description="Alignment (left , center , right)", default="left")
     
 
 # --- Field Values ---

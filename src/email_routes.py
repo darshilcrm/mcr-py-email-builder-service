@@ -13,6 +13,9 @@ def token_usages_writer(cb):
     filename = "token_usage_log.csv"
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     file_exists = os.path.isfile(filename)
+    cost = cb.total_cost
+    if cb.total_cost == 0:
+        cost = (0.0000003 * cb.prompt_tokens) + (0.0000025 * cb.completion_tokens)
     row = [
         timestamp,
         cb.prompt_tokens,
@@ -20,7 +23,7 @@ def token_usages_writer(cb):
         cb.reasoning_tokens,
         cb.total_tokens,
         cb.successful_requests,
-        cb.total_cost
+        cost
     ]
     try:
         with open(filename, mode='a', newline='', encoding='utf-8') as file:
@@ -50,7 +53,7 @@ def generate_email(data: dict , background_tasks: BackgroundTasks):
     data_str = json.dumps(data)
     inputs = {"messages": [{"role": "user", "content":"""Generate a fully dynamic email layout for the following details:""" + data_str}]}
 
-    # response = agent.invoke(inputs)
+    response = agent.invoke(inputs)
 
     with get_openai_callback() as cb:
         response = agent.invoke(inputs)
